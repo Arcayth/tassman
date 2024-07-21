@@ -54,6 +54,16 @@ export async function signUp(
       };
     }
 
+    await prisma.user.create({
+      data: {
+        id: userId,
+        username,
+        email,
+        passwordHash,
+        displayName: username,
+      },
+    });
+
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
     cookies().set(
