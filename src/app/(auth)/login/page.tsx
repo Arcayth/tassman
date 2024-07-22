@@ -1,4 +1,4 @@
-import SignupForm from "@/components/SignupForm";
+import LoginForm from "@/components/Loginform";
 import {
   Card,
   CardContent,
@@ -19,19 +19,19 @@ const Signup = () => {
     <div className="flex justify-center items-center h-screen">
       <Card className="w-[350px]">
         <CardHeader className="text-center">
-          <CardTitle className="font-bold">Create an Account</CardTitle>
+          <CardTitle className="font-bold">Login To Your Account</CardTitle>
           <CardDescription>
-            Join us today to keep track of your tasks and deadlines efficiently.
+            Login to keep track of your tasks and deadlines efficiently.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <SignupForm />
+          <LoginForm />
         </CardContent>
         <CardFooter className="text-center">
           <p>
-            Already have an account?{" "}
-            <a href="/login" className="underline">
-              Log in
+            Don't have an account?{" "}
+            <a href="/signup" className="underline">
+              Sign Up 
             </a>
           </p>
         </CardFooter>

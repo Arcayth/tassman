@@ -8,7 +8,9 @@ export default function Home() {
       <div className="h-screen">
         <div className="container pt-4 flex items-center justify-between">
           <h1 className="text-3xl font-bold">Tassman</h1>
-          <Button className="text-lg bg-primary">Register</Button>
+          <Button className="text-lg bg-primary">
+            <Link href="/signup">Register</Link>
+          </Button>
         </div>
         <div className="flex flex-col gap-3 items-center h-full mt-48">
           <h1 className="text-4xl font-bold">
