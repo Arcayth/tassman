@@ -29,7 +29,7 @@ const Signup = () => {
         </CardContent>
         <CardFooter className="text-center">
           <p>
-            Don&apos;t have an account?{" "}
+            Don't have an account?{" "}
             <a href="/signup" className="underline">
               Sign Up 
             </a>
