@@ -1,4 +1,4 @@
-import LoginForm from "@/components/Loginform";
+import LoginForm from "@/app/(auth)/login/Loginform";
 import {
   Card,
   CardContent,
@@ -7,11 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Car } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign Up",
+  title: "Login",
 };
 
 const Signup = () => {

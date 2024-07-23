@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 
 export async function login(
   credentials: loginValues,
-): Promise<{ error: string }> {
+): Promise<{ error: string|null }> {
   try {
     const { username, password } = loginSchema.parse(credentials);
 
@@ -50,7 +50,7 @@ export async function login(
       sessionCookie.attributes,
     );
 
-    return redirect("/");
+    return redirect("/dashboard");
   } catch (error) {
     if (isRedirectError(error)) throw error;
     console.error(error);

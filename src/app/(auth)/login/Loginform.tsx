@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,19 +28,20 @@ const LoginForm = () => {
 
   async function onSubmit(values: loginValues) {
     setError(undefined);
-
-    const { error } = await login(values);
-    if (error) {
-      setError(error);
+    if (values) {
+      const  login_error  = await login(values);
+      if (login_error) {
+        setError(login_error as unknown as string);
+      }
+    } else {
+      setError("Please fill in all fields");
     }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {error && (
-            <p className="text-destructive">{error}</p>
-        )}
+        {error && <p className="text-destructive">{error}</p>}
         <FormField
           control={form.control}
           name="username"

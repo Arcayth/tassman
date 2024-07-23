@@ -8,50 +8,38 @@ import {
   DropdownMenuLabel,
   DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import {
-    Bell,
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-  Users,
-} from "lucide-react";
-import { Outfit } from "next/font/google";
+import { Bell, CreditCard, LogOut, Settings, User } from "lucide-react";
+import { logout } from "@/app/(auth)/action";
+import { ModeToggle } from "./ModeToggle";
+import NotificationBell from "./NotificationBell";
 
-export default function Navbar() {
+interface NavbarProps {
+  username: string;
+  avatarUrl: string | null;
+}
+
+export default function Navbar({ username, avatarUrl }: NavbarProps) {
   return (
-    <div className="container pt-4 flex items-center justify-between">
-      <h1 className="text-3xl font-bold">Tassman</h1>
+    <div className="mx-16 pt-4 flex items-center justify-between">
+      <h1 className="text-3xl font-bold text-primary">Tassman</h1>
       <div className="flex gap-3 items-center">
-        <Bell className="h-5" />
-        <DropdownMenu >
+        <ModeToggle />
+        <NotificationBell />
+        <DropdownMenu>
           <DropdownMenuTrigger asChild>
-              <Avatar className="w-12 h-12 cursor-pointer">
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="avatar"
-                />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+            <Avatar className="w-12 h-12 cursor-pointer">
+              <AvatarImage src={avatarUrl ?? ""} alt={username} />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>
+              {" "}
+              <span className="font-bold capitalize">{username}</span>
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
@@ -59,19 +47,21 @@ export default function Navbar() {
                 <span>Profile</span>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCard className="mr-2 h-4 w-4" />
-                <span>Billing</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Settings</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>Log out</span>
-            </DropdownMenuItem>
+            <DropdownMenuGroup>
+              <form action={logout}>
+                <Button variant={"ghost"} className="w-full">
+                  <DropdownMenuItem className="cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-full" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </Button>
+              </form>
+            </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
