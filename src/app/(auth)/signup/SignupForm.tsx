@@ -31,9 +31,13 @@ const SignupForm = () => {
   async function onSubmit(values: signUpValues) {
     setError(undefined);
 
-    const { error } = await signUp(values);
-    if (error) {
-      setError(error);
+    if (values) {
+      const  signup_error  = await signUp(values);
+      if (signup_error) {
+        setError(signup_error as unknown as string);
+      }
+    } else {
+      setError("Please fill in all fields");
     }
   }
 
