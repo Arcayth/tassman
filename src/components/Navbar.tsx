@@ -15,6 +15,7 @@ import { Bell, CreditCard, LogOut, Settings, User } from "lucide-react";
 import { logout } from "@/app/(auth)/action";
 import { ModeToggle } from "./ModeToggle";
 import NotificationBell from "./NotificationBell";
+import Link from "next/link";
 
 interface NavbarProps {
   username: string;
@@ -48,7 +49,7 @@ export default function Navbar({ username, avatarUrl }: NavbarProps) {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
+                <span ><Link href="/Settings">Settings</Link></span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

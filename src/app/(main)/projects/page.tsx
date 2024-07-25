@@ -6,9 +6,9 @@ export default function Home() {
   const { user } = useSession();
   return (
     <>
-      <div>
-projects
-        </div>
+      <div className="ml-4">
+          Ongoing Projects
+      </div>
     </>
   );
 }

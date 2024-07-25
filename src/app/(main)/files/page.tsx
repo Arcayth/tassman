@@ -6,7 +6,7 @@ export default function Home() {
   const { user } = useSession();
   return (
     <>
-      <div>
+      <div className="ml-4">
 files
         </div>
     </>
