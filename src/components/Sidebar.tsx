@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 interface SidebarItemsProps {
   title: string;
@@ -37,9 +38,9 @@ const sidebarItems: SidebarItemsProps[] = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({className}: {className?: string}) => {
   return (
-    <div className="ml-12 w-60 h-screen flex flex-col gap-2 ">
+    <div className={cn("ml-12 w-60 h-screen flex flex-col gap-2 ", className)}>
       {sidebarItems.map((item, index) => (
         <Link key={index} href={item.href}>
           <Button

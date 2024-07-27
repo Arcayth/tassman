@@ -28,6 +28,8 @@ model User {
 
   createdAt DateTime @default(now())
 
+  tasks Task[]
+
   @@map("users")
 }
 
@@ -39,4 +41,30 @@ model Session {
   user User @relation(references: [id], fields: [userId], onDelete: Cascade)
 
   @@map("sessions")
+}
+
+model Task {
+  id       String   @id
+  userId   String
+  taskName     String
+  startingTime    DateTime 
+  deadline DateTime
+  status   Status
+  priority Priority
+
+  user User   @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  @@map("tasks")
+}
+
+enum Status {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
 }

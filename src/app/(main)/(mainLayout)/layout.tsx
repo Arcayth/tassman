@@ -1,7 +1,7 @@
 import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
 import SessionProvider from "@/providers/SessionProvider";
-import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 
 export default async function Layout({
   children,
@@ -14,12 +14,12 @@ export default async function Layout({
 
   return (
     <SessionProvider value={session}>
-      <Navbar
-        className="bg-background"
-        username={session.user.username}
-        avatarUrl={session.user.avatarUrl}
-      />
-      {children}
+        <div className="flex flex-row mt-3">
+          <Sidebar className="" />
+          <div className="w-screen rounded-lg bg-card">
+            <div className="mx-16 mt-3">{children}</div>
+          </div>
+        </div>
     </SessionProvider>
   );
 }
