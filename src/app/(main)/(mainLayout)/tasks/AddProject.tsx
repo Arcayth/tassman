@@ -50,7 +50,6 @@ export default function AddProject() {
 
   async function onSubmit(values: taskValues) {
     await createTask(values);
-    console.log(values);
   }
 
   return (

@@ -1,45 +1,23 @@
+"use client";
 import React from "react";
 import { TableBody, TableCell, TableRow } from "./ui/table";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { MoreHorizontal } from "lucide-react";
-import { Priority, Status  } from "@prisma/client";
+import { Task } from "@prisma/client";
+import { deleteTask } from "@/app/(main)/(mainLayout)/tasks/action";
 
-interface TaskTableContentProps {
-
-  tasks: {
-
-    id: string;
-
-    userId: string;
-
-    taskName: string;
-
-    startingTime: Date;
-
-    deadline: Date;
-
-    status: Status;
-
-    priority: Priority;
-
-  }[];
-
-}
-
-const TaskTableContent: React.FC<TaskTableContentProps>= async ({tasks}) => {
-
+const TaskTableContent = ({ tasks }: { tasks: Task[] }) => {
   return (
     <TableBody>
-      {tasks.map((item, idx) => (
-        <TableRow key={idx}>
+      {tasks.map((item) => (
+        <TableRow key={item.id}>
           <TableCell className="font-medium">{item.taskName}</TableCell>
           <TableCell>
             {item.status === "COMPLETED" ? (
@@ -49,9 +27,10 @@ const TaskTableContent: React.FC<TaskTableContentProps>= async ({tasks}) => {
             ) : (
               <Badge variant="destructive">{item.status}</Badge>
             )}
-
           </TableCell>
-          <TableCell className="hidden md:table-cell">{item.startingTime.toDateString()}</TableCell>
+          <TableCell className="hidden md:table-cell">
+            {item.startingTime.toDateString()}
+          </TableCell>
           <TableCell className="hidden md:table-cell">
             {item.deadline.toDateString()}
           </TableCell>
@@ -62,7 +41,7 @@ const TaskTableContent: React.FC<TaskTableContentProps>= async ({tasks}) => {
               <Badge variant="orange">{item.priority}</Badge>
             ) : (
               <Badge variant="success">{item.priority}</Badge>
-            )} 
+            )}
           </TableCell>
           <TableCell>
             <DropdownMenu>
@@ -73,9 +52,12 @@ const TaskTableContent: React.FC<TaskTableContentProps>= async ({tasks}) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Delete</DropdownMenuItem>
+                <Button variant={"ghost"}>
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                </Button>
+                <Button onClick={() => deleteTask(item.id)} variant={"ghost"}>
+                  <DropdownMenuItem>Delete</DropdownMenuItem>
+                </Button>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>

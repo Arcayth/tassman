@@ -31,3 +31,14 @@ export async function createTask(input: taskValues) {
 
   revalidatePath("/tasks");
 }
+
+export async function deleteTask(id: string) {
+  const { user } = await validateRequest();
+  if (!user) throw new Error("Unauthorized");
+
+  await prisma.task.delete({
+    where: { id },
+  });
+
+  revalidatePath("/tasks");
+}
