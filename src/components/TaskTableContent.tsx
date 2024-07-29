@@ -12,6 +12,7 @@ import { Badge } from "./ui/badge";
 import { MoreHorizontal } from "lucide-react";
 import { Task } from "@prisma/client";
 import { deleteTask } from "@/app/(main)/(mainLayout)/tasks/action";
+import { AdvancedColorfulBadges } from "./AdvancedColorfulBadges";
 
 const TaskTableContent = ({ tasks }: { tasks: Task[] }) => {
   return (
@@ -21,11 +22,11 @@ const TaskTableContent = ({ tasks }: { tasks: Task[] }) => {
           <TableCell className="font-medium">{item.taskName}</TableCell>
           <TableCell>
             {item.status === "COMPLETED" ? (
-              <Badge variant="success">{item.status}</Badge>
+              <AdvancedColorfulBadges color="green">Completed</AdvancedColorfulBadges>
             ) : item.status === "IN_PROGRESS" ? (
-              <Badge variant="orange">{item.status}</Badge>
+              <AdvancedColorfulBadges color="orange">In Progress</AdvancedColorfulBadges>
             ) : (
-              <Badge variant="destructive">{item.status}</Badge>
+              <AdvancedColorfulBadges color="red">Not Started</AdvancedColorfulBadges>
             )}
           </TableCell>
           <TableCell className="hidden md:table-cell">
@@ -36,11 +37,11 @@ const TaskTableContent = ({ tasks }: { tasks: Task[] }) => {
           </TableCell>
           <TableCell className="hidden md:table-cell">
             {item.priority === "HIGH" ? (
-              <Badge variant="destructive">{item.priority}</Badge>
+              <AdvancedColorfulBadges color="red">High</AdvancedColorfulBadges>
             ) : item.priority === "MEDIUM" ? (
-              <Badge variant="orange">{item.priority}</Badge>
+              <AdvancedColorfulBadges color="orange">Medium</AdvancedColorfulBadges>
             ) : (
-              <Badge variant="success">{item.priority}</Badge>
+              <AdvancedColorfulBadges color="green">Low</AdvancedColorfulBadges>
             )}
           </TableCell>
           <TableCell>

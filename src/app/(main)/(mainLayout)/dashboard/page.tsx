@@ -1,7 +1,6 @@
 "use client";
 
 import { DollarSign } from "lucide-react";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import SnippetCard from "./SnippetCard";
 
@@ -59,10 +58,10 @@ export default function Dashboard() {
         </Card>
       </div>
       <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-3 mt-3">
-       <SnippetCard className="col-span-1 shadow-lg"/> 
-       <SnippetCard className="col-span-1 shadow-lg"/> 
-       <SnippetCard className="col-span-1 shadow-lg"/> 
-       <SnippetCard className="col-span-1 shadow-lg"/> 
+        <SnippetCard className="col-span-1 shadow-lg" />
+        <SnippetCard className="col-span-1 shadow-lg" />
+        <SnippetCard className="col-span-1 shadow-lg" />
+        <SnippetCard className="col-span-1 shadow-lg" />
       </div>
     </div>
   );
